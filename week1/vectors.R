@@ -46,3 +46,8 @@ data[[2]][3]
 
 df <- data.frame(Name = name, Age = age, Status = isMaried)
 typeof(df)
+
+myVector <- c(19,18,29,20,22,18,16,16,13,29,21,18,19,17,13,23,17,20,23,13,20,23,20,24,11,11,16,20,22,19,16,18,26,19,17,23,18,28,25,28,16,19,16,19,26,18,24,20,20,18)
+myVectorMean <- mean(myVector)
+myVectorSd <- sd(myVector)
+myVector[abs(myVector - myVectorMean) <= myVectorSd]
