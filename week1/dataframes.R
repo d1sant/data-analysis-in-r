@@ -47,3 +47,19 @@ mydata[,1] == mydata$score
 
 mydata[,2:5]
 head(mydata[,2:5])
+
+library(help = "datasets")
+data(mtcars)
+help("mtcars")
+
+# 1st task
+mydata <- mtcars
+mydata$even_gear <- (mydata$gear + 1) %% 2
+mydata$even_gear
+mydata[,c(10,12)]
+
+# 2nd task
+mydata[mydata$cyl == 4,1]
+
+# 3rd task
+mydata[c(3,7,10,12,nrow(mydata)),]
