@@ -47,3 +47,22 @@ mydata[,1] == mydata$score
 
 mydata[,2:5]
 head(mydata[,2:5])
+
+# Subsetting with condition
+mydata$gender
+mydata$gender == 'female'
+mydata[mydata$gender == 'female',1]
+mydata[mydata$gender == 'female',1:3]
+
+subset(mydata, gender == 'female')
+head(subset(mydata, gender == 'female'))
+subset(mydata, score > 3.5)
+
+# rbind, cbind
+mydata2 <- subset(mydata, gender == 'female')
+mydata3 <- subset(mydata, gender == 'male')
+mydata4 <- rbind(mydata2, mydata3)
+
+mydata5 <- mydata[,1:10]
+mydata6 <- mydata[,11:24]
+mydata7 <- cbind(mydata5, mydata6)
