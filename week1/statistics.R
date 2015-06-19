@@ -77,3 +77,7 @@ sum(is.na(df$mpg))
 sum(is.na(df))
 
 df$mpg[1:10] <- NA
+mean(df$mpg)
+mean(df$mpg, na.rm = T)
+
+aggregate(mpg ~ am, df, sd)
