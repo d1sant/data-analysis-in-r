@@ -58,3 +58,22 @@ describe(x = df)
 describe(x = df[, -c(8,9)])
 
 descr <-  describe(x = df[, -c(8,9)])
+
+describeBy(x = df[, -c(8,9)], group = df$vs)
+descr2 <- describeBy(x = df[, -c(8,9)], group = df$vs)
+descr2$V
+descr2$S
+
+descr2 <- describeBy(x = df[, -c(8,9)], group = df$vs, mat = T)
+descr2 <- describeBy(x = df[, -c(8,9)], group = df$vs, mat = T, digits = 1)
+
+descr3 <- describeBy(x = df[, -c(8,9)], group = df$vs, mat = T, digits = 1, fast = T)
+
+descr4 <- describeBy(df$qsec, group = list(df$vs, df$am), mat = T, digits = 1, fast = T)
+
+# Missed values
+is.na(df$mpg)
+sum(is.na(df$mpg))
+sum(is.na(df))
+
+df$mpg[1:10] <- NA
