@@ -81,3 +81,41 @@ mean(df$mpg)
 mean(df$mpg, na.rm = T)
 
 aggregate(mpg ~ am, df, sd)
+
+library(help = "datasets")
+help("airquality")
+mydata <- airquality
+str(mydata)
+is.na(mydata)
+
+# 1st task
+?aggregate
+mydata2 <- mydata[mydata$Month == 7:9,] # not correct
+mydata2 <- subset(mydata, mydata$Month %in% c(7,8,9)) # correct
+aggregate(Ozone ~ Month, mydata2, FUN = length)
+
+# 2nd task
+describeBy(mydata, mydata$Month)
+
+#,3rd,task
+help("iris")
+mydata <- iris
+sum(is.na(mydata))
+str(mydata)
+
+describe(x = mydata[,1:4])
+
+# 4th task
+describeBy(x = mydata[,1:4],group = mydata$Species)
+
+# 5th task
+myVector <- c(22,15,26,24,20,24,21,18,15,15,13,25,17,20,15,25,20,20,17,11,NA,NA,14,17,16,26,NA,27,NA,12,21,NA,19,NA,NA,NA,NA,17,NA,NA)
+myVector
+
+myMean <- mean(myVector, na.rm = T)
+for (i in 1:length(myVector)) {
+  if (is.na(myVector[i])) {
+    myVector[i] <- myMean
+  }
+}
+print(myVector)
