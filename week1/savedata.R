@@ -1,0 +1,20 @@
+setwd("~/IdeaProjects/My/data-analysis-in-r/week1")
+
+df <- mtcars
+str(df)
+library(ggplot2)
+
+mean_mpg <- mean(df$mpg)
+descr_df <- describe(df[,-c(8,9)]) 
+
+boxplot <- ggplot(df, aes(x = factor(am), y = disp)) + 
+  geom_boxplot() +
+  xlab("Transmission") +
+  ylab("Displacement (cu.in.)") +
+  ggtitle("Box - plot")
+
+write.csv(df, "df.csv")
+write.csv(descr_df, "descr_db.csv")
+
+my_mean <- mean(10^6:10^9)
+save(my_mean, file = "mymean.RData")
