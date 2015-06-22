@@ -46,3 +46,21 @@ print(HairEyeColor['Red','Blue','Male'] / 100 )
 
 # 2nd task
 sum(HairEyeColor[,'Green','Female'])
+
+# plots
+barplot(t1)
+barplot(t2)
+barplot(t2, legend.text = T, args.legend = list(x = "topright"))
+barplot(t2, legend.text = T, args.legend = list(x = "topright"), beside = T)
+
+mosaicplot(t2)
+
+# 3rd task
+library("ggplot2")
+mydata <- as.data.frame(HairEyeColor)
+obj <- ggplot(data = mydata[mydata$Sex == "Female",], aes(x = Hair, y = Freq, fill = Eye)) + 
+  geom_bar(stat="identity", position = "dodge") + 
+  scale_fill_manual(values=c("Brown", "Blue", "Darkgrey", "Darkgreen"))
+
+?geom_bar
+obj
