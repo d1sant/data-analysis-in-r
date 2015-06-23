@@ -64,3 +64,47 @@ obj <- ggplot(data = mydata[mydata$Sex == "Female",], aes(x = Hair, y = Freq, fi
 
 ?geom_bar
 obj
+
+##########################################
+
+# Binominal Test
+binom.test(x = 5, n = 20, p = 0.5)
+binom.test(t1)
+
+# Chi-Square Test
+t1
+chisq.test(t1)
+
+chi <- chisq.test(t1)
+chi$exp
+chi$obs
+
+t2
+chisq.test(t2)
+
+# Fisher's Exact Test
+fisher.test(t2)
+
+# 4th task
+chisq.test(HairEyeColor['Brown',,'Female'])
+
+# 5th task
+str(diamonds)
+?chisq.test
+chi <- chisq.test(table(diamonds$cut, diamonds$color))
+chi$statistic
+
+chisq.test(table(diamonds$cut, diamonds$color))$statistic
+
+# 6th task
+df <- diamonds
+mean_price <- mean(df$price)
+mean_carat <- mean(df$carat)
+df$factor_price <- ifelse(df$price > mean_price, 1, 0)
+df$factor_carat <- ifelse(df$carat > mean_carat, 1, 0)
+chi <- chisq.test(table(df$factor_price, df$factor_carat))
+chi$statistic
+
+# 7th task
+fi <- fisher.test(table(vs = mtcars$vs, am = mtcars$am))
+fi$p.value
