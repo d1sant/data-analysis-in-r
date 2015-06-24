@@ -62,3 +62,33 @@ t1$statistic
 # 2nd task
 df <- read.csv("lekarstva.csv")
 t.test(df$Pressure_before, df$Pressure_after, paired = T)
+
+install.packages("Hmisc")
+mean_cl_normal(df1$Sepal.Length)
+
+ggplot(df1, aes(Species, Sepal.Length)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar")
+
+ggplot(df1, aes(Species, Sepal.Length)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", width = 0.1)
+
+ggplot(df1, aes(Species, Sepal.Length)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", width = 0.1) +
+  stat_summary(fun.y = mean, geom = "point", size = 4)
+
+ggplot(df1, aes(Species, Sepal.Length)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "pointrange", size = 1)
+
+?wilcox.test
+
+test2 <- wilcox.test(Petal.Length ~ Species, df1)
+test2$statistic
+test2$p.value
+pv <- test2$p.value
+
+ggplot(df1, aes(Species, Petal.Length)) +
+  geom_boxplot()
+
+wilcox.test(df1$Petal.Length, df1$Petal.Width, paired = T)
+paired_wtest <- wilcox.test(df1$Petal.Length, df1$Petal.Width, paired = T)
+paired_wtest$p.value
