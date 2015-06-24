@@ -1,3 +1,5 @@
+setwd("~/IdeaProjects/My/data-analysis-in-r/week2")
+
 ?iris
 
 df <- iris
@@ -48,3 +50,15 @@ mean_Sepal.Length = mean(df$Sepal.Length)
 t.test(df1$Sepal.Length, mu = 8)
 
 t.test(df1$Petal.Length, df1$Petal.Width, paired = T)
+
+# 1st task
+?ToothGrowth
+str(ToothGrowth)
+df <- rbind(ToothGrowth[ToothGrowth$supp == 'OJ' & ToothGrowth$dose == 0.5,],
+            ToothGrowth[ToothGrowth$supp == 'VC' & ToothGrowth$dose == 2.0,])
+t1 <- t.test(len ~ supp, df)
+t1$statistic
+
+# 2nd task
+df <- read.csv("lekarstva.csv")
+t.test(df$Pressure_before, df$Pressure_after, paired = T)
