@@ -1,3 +1,5 @@
+### ANOVA
+
 # formulas
 
 DV ~ IV # One-way
@@ -9,7 +11,7 @@ DV ~ IV1 * IV2 # The same: Main effects + interaction
 
 DV ~ IV1 + IV2 + IV3 + IV1:IV2
 
-DV ~ (IV1 + IV2 + IV3)^2 # main effects and all possible interactions
+DV ~ (IV1 + IV2 + IV3)^2 # main effects and all possible interactions up to level 2
 
 DV ~ IV1 + Error(subject/IV1) # repeated measures
 
