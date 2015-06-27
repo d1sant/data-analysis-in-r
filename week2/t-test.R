@@ -92,3 +92,14 @@ ggplot(df1, aes(Species, Petal.Length)) +
 wilcox.test(df1$Petal.Length, df1$Petal.Width, paired = T)
 paired_wtest <- wilcox.test(df1$Petal.Length, df1$Petal.Width, paired = T)
 paired_wtest$p.value
+
+# 3rd task
+t1 <- read.table("dataset_11504_15.txt")
+bartlett.test(V1 ~ V2, t1)
+t.test(V1 ~ V2, t1, var.equal = T)
+
+# 4th task
+t2 <- read.table("dataset_11504_16.txt")
+t.test(t2$V1, t2$V2, var.equal = F)
+mean(t2$V1)
+mean(t2$V2)
