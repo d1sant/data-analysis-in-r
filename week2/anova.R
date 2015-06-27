@@ -36,3 +36,27 @@ summary(fit1)
 
 model.tables(fit, "means")
 model.tables(fit1, "means") # the same results
+
+# Interactions
+pd = position_dodge(0.1)
+ggplot(mydata, aes(x = store, y = price, color = origin, group = origin)) + 
+  stat_summary(fun.data = mean_cl_boot, geom = 'errorbar', width = 0.2, lwd = 0.8, position = pd)+  
+  stat_summary(fun.data = mean_cl_boot, geom = 'line', size = 1.5, position = pd) +
+  stat_summary(fun.data = mean_cl_boot, geom = 'point', size = 5, position = pd, pch=15) +
+  theme_bw()
+
+fit3 <- aov(price ~ origin + store + origin:store, mydata)
+summary(fit3)
+
+fit31 <- aov(price ~ origin * store, mydata) # the same as previous
+summary(fit31)
+
+# 1st task
+?npk
+df <- npk
+t1 <- aov(yield ~ N*P, df)
+summary(t1)
+
+# 2nd task
+t2 <- aov(yield ~ N + P + K, df)
+summary(t2)
