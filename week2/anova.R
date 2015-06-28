@@ -40,7 +40,7 @@ model.tables(fit1, "means") # the same results
 # Interactions
 pd = position_dodge(0.1)
 ggplot(mydata, aes(x = store, y = price, color = origin, group = origin)) + 
-  stat_summary(fun.data = mean_cl_boot, geom = 'errorbar', width = 0.2, lwd = 0.8, position = pd)+  
+  stat_summary(fun.data = mean_cl_boot, geom = 'errorbar', width = 0.2, lwd = 0.8, position = pd) +  
   stat_summary(fun.data = mean_cl_boot, geom = 'line', size = 1.5, position = pd) +
   stat_summary(fun.data = mean_cl_boot, geom = 'point', size = 5, position = pd, pch=15) +
   theme_bw()
@@ -119,9 +119,7 @@ t5 <- aov(temperature ~ pill * doctor + Error(patient/(pill * doctor)), df)
 summary(t5)
 
 # 6th task
-obj <- ggplot(ToothGrowth, aes(x = as.factor(dose), y = len, col = supp)) +  
+obj <- ggplot(ToothGrowth, aes(x = as.factor(dose), y = len, col = supp, group = supp)) +  
   stat_summary(fun.data = mean_cl_boot, geom = 'errorbar', width = 0.1) + 
   stat_summary(fun.data = mean_cl_boot, geom = 'point', size = 3) + 
   stat_summary(fun.data = mean_cl_boot, geom = 'line')
-
-obj
