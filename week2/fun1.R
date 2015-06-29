@@ -207,7 +207,7 @@ outliers.rm <- function(x) {
 
 outliers.rm2 <- function(x) {
   inter = IQR(x)
-  q <-  quantile(x, probs = c(0.25, 0.75));
+  q <-  quantile(x, probs = c(0.25, 0.75))
   q1 <- q[[1]][1] - inter * 1.5
   q3 <- q[[2]][1] + inter * 1.5
   return(x[x <= q3 & x >=q1])
