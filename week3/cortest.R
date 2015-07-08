@@ -56,7 +56,9 @@ filtered.cor <- function(x) {
 
 filtered.cor2 <- function(x) {
   dfr <- cor(x[,sapply(x, is.numeric)])
-  return(max(apply(sapply(dfr, function(x) ifelse(x == 1, 0, x)), c(1,2), max)))
+  max1 <- max(sapply(dfr, function(x) ifelse(x == 1 | x < 0, 0, x)))
+  min1 <- min(sapply(dfr, function(x) ifelse(x == 1 | x > 0, 0, x)))
+  return(ifelse(abs(max1) > abs(min1), max1, min1))
 }
 
 ?is.numeric
@@ -69,7 +71,10 @@ step6 <- read.csv("step6.csv", header = T, sep = ',')
 ?apply
 
 dfr <- cor(step6[,sapply(step6, is.numeric)])
-dfr <- apply(dfr, 2, FUN = function(x) ifelse(x == 1, 0, x))
+dfr1 <- sapply(dfr, function(x) ifelse(x == 1 | x < 0, 0, x))
+dfr2 <- sapply(dfr, function(x) ifelse(x == 1 | x > 0, 0, x))
+max1 <- max(dfr1)
+min2 <- min(dfr2)
 max(dfr)
 
 dfr[1,3]
@@ -78,6 +83,23 @@ str(dfr)
 filtered.cor(step6)
 filtered.cor2(step6)
 filtered.cor(iris)
+filtered.cor2(iris)
 
 iris$Petal.Length <- -iris$Petal.Length
 filtered.cor(iris)
+
+# 3rd task
+df <- read.csv("vec.csv", sep = " ")
+vec1 <- df[,"VEC1"]
+vec2 <- df[,"VEC2"]
+
+n1 <- shapiro.test(vec1)
+n2 <- shapiro.test(vec2)
+
+if (n1$p.value < 0.05 & n2$p.value < 0.05) {
+  fit <- cor.test(vec1, vec2, method = "spearman")
+} else {
+  fit <- cor.test(vec1, vec2, method = "pearson")
+}
+
+print(fit$estimate)
