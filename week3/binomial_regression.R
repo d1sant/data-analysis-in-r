@@ -69,3 +69,18 @@ test_df$hon <- NA
 
 test_df$hon <- predict(fit, newdata = test_df, type = "response")
 View(test_df)
+
+# 3rd task
+?predict
+
+df <- read.csv("data.csv")
+df1 <- df[is.na(df$admit) == F,]
+df2 <- df[is.na(df$admit),]
+
+fit <- glm(admit ~ gpa + rank, df1, family = "binomial")
+df1$prob <- predict(object = fit, type = "response")
+df2$admit <- NA
+df2$prob <- predict(fit, newdata = df2, type = "response")
+df2$pred_resp <- factor(ifelse(df2$prob > 0.4, 1, 0), labels = c("N", "Y"))
+sum(df2$pred_resp == 'Y')
+sum(df2$pred_resp == 'N')
